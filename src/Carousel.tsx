@@ -22,6 +22,7 @@ const Carousel = ({slides}: {slides?: Slide[]}) => {
             >
                 Next
             </CarouselButton>
+            {}
             <CarouselButton
                 data-testid="prev-button"
                 onClick={() => {
