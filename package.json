@@ -5,11 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "lint": "eslint . && prettier --list-different .",
-    "format": "eslint --fix . && prettier --log-level warn --write .",
+    "lint:js": "eslint . && prettier --list-different .",
+    "lint:css": "stylelint \"**/*.{ts,tsx}\"",
+    "lint": "npm run lint:js && npm run lint:css",
+    "format:js": "eslint --fix . && prettier --log-level warn --write .",
+    "format:css": "stylelint \"**/*.{ts,tsx}\" --fix",
+    "format": "npm run format:js && npm run format:css",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -17,6 +21,8 @@
     "styled-components": "^6.0.5"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.28.6",
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@testing-library/jest-dom": "^6.0.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -27,12 +33,16 @@
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "@vitejs/plugin-react": "^5.1.4",
+    "babel-plugin-styled-components": "^2.1.4",
     "eslint": "^8.35.0",
     "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-testing-library": "^6.0.1",
     "happy-dom": "^20.8.3",
+    "postcss-styled-syntax": "^0.4.0",
     "prettier": "^2.8.4",
+    "stylelint": "^15.10.2",
+    "stylelint-config-standard": "^34.0.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.1",
     "vitest": "^4.0.18"

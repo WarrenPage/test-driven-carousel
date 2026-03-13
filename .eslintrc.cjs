@@ -18,7 +18,7 @@ module.exports = {
   },
   overrides: [
     { files: ["*.cjs"] },
-    { 
+    {
       files: ["*.ts", "*.tsx"],
       extends: [
         "plugin:@typescript-eslint/recommended",
@@ -30,7 +30,6 @@ module.exports = {
         project: ["./tsconfig.json", "./tsconfig.node.json"],
         tsconfigRootDir: __dirname,
       },
-     },
-],
-
+    },
+  ],
 };

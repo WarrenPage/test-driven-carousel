@@ -1,7 +1,7 @@
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef } from "react";
 
 const CarouselButton = (props: ComponentPropsWithRef<"button">) => (
-<button {...props} />
+  <button {...props} />
 );
 
 export default CarouselButton;
