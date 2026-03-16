@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import CarouselSlide from "./CarouselSlide";
 
+
 describe("CarouselSlide", () => {
   it("renders a <figure>", () => {
     render(<CarouselSlide />);
@@ -40,4 +41,14 @@ describe("CarouselSlide", () => {
     expect(figure).toHaveClass(props.className);
     expect(figure).toHaveAttribute("data-test-name", props["data-test-name"]);
   });
+  it("has the expected static styles", () => {
+    render(<CarouselSlide />);
+    const img = screen.getByRole("img");
+    expect(img).toHaveStyleRule("object-fit", "cover");
+    expect(img).toHaveStyleRule("width", "100%");
+   });
+   it("uses `imgHeight` as the height of the <img>", () => {
+    render(<CarouselSlide imgHeight="123px" />);
+    expect(screen.getByRole("img")).toHaveStyleRule("height", "123px");
+   })
 });
