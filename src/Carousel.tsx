@@ -8,17 +8,24 @@ type Slide = {
   attribution?: ReactNode;
 };
 
-export type CarouselProps = {
+type CarouselProps = {
   slides: Slide[];
-  defaultImageHeight?: CarouselSlideProps["imgHeight"];
+  defaultImgHeight?: CarouselSlideProps["imgHeight"];
+  DefaultImgComponent?: CarouselSlideProps["ImgComponent"];
 };
 
-const Carousel = ({ slides, defaultImageHeight }: CarouselProps) => {
+const Carousel = ({ 
+  slides,
+  DefaultImgComponent, 
+  defaultImgHeight 
+}: CarouselProps) => {
   const [slideIndex, setSlideIndex] = useState(0);
   return (
     <div data-testid="carousel">
-      ;
-      <CarouselSlide imgHeight={defaultImageHeight} {...slides?.[slideIndex]} />
+      <CarouselSlide 
+      imgHeight={defaultImgHeight} 
+      ImgComponent={DefaultImgComponent}
+      {...slides?.[slideIndex]} />
       <CarouselButton
         data-testid="next-button"
         onClick={() => {

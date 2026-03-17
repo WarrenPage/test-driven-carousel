@@ -21,7 +21,7 @@ describe("Carousel", () => {
     },
   ];
   it("renders a <div>", () => {
-    render(<Carousel />);
+    render(<Carousel slides={slides} />);
     expect(screen.getByTestId("carousel")).toBeInTheDocument();
   });
   it("renders the first slide by default", () => {
@@ -59,4 +59,18 @@ describe("Carousel", () => {
     await user.click(prevButton);
     expect(img).toHaveAttribute("src", slides[0].imgUrl);
   });
+  it("passes DefaultImgComponent to the CarouselSlide", () => {
+    const DefaultImgComponent = () => <img data-testid="Test image" />;
+    render(
+      <Carousel slides={slides} DefaultImgComponent={DefaultImgComponent} />
+    );
+    const img = screen.getByRole("img");
+    expect(img).toHaveAttribute("data-testid", "Test image");
+  })
+  it("passes defaultImgHeight to the CarouselSlide", () => {
+    const defaultImgHeight = 1234;
+    render(<Carousel slides={slides} defaultImgHeight={defaultImgHeight} />);
+    const img = screen.getByRole("img");
+    expect(img).toHaveStyleRule("height", "1234px");
+  })
 });
