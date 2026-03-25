@@ -1,9 +1,7 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import CarouselSlide, { CarouselSlideProps } from "./CarouselSlide";
 import CarouselButton from "./CarouselButton";
 import { useSlideIndex } from "./useSlideIndex";
-
-
 
 type Slide = {
   imgUrl?: string;
@@ -13,16 +11,27 @@ type Slide = {
 
 type CarouselProps = {
   slides: Slide[];
+  slideIndex?: number;
+  onSlideIndexChange?: (newSlideIndex: number) => void;
+  autoAdvanceInterval?: number;
   defaultImgHeight?: CarouselSlideProps["imgHeight"];
   DefaultImgComponent?: CarouselSlideProps["ImgComponent"];
 };
 
 const Carousel = ({ 
   slides,
+  slideIndex: slideIndexProp,
+  onSlideIndexChange,
+  autoAdvanceInterval,
   DefaultImgComponent, 
   defaultImgHeight 
 }: CarouselProps) => {
-  const [slideIndex, decrementSlideIndex, incrementSlideIndex] = useSlideIndex(slides);
+  const [slideIndex, decrementSlideIndex, incrementSlideIndex] = useSlideIndex(
+    slides,
+    slideIndexProp,
+    onSlideIndexChange,
+    autoAdvanceInterval
+);
   return (
     <div data-testid="carousel">
       <CarouselSlide 
